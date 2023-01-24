@@ -1,10 +1,10 @@
 # prod environment deploying to prod account
-# you can add any env variables you like here to pass to the container. 
-# if you want to add secrets and pass them as env vars to the container, 
+# you can add any env variables you like here to pass to the container.
+# if you want to add secrets and pass them as env vars to the container,
 # it is recommended you follow the example in stage_resources.py for secret mapping.
 # that method prevents them from being in the clear at runtime.
 
-common: 
+common:
   # postgres config, host gets modified in deployment, db is used by docker-compose
   POSTGRES_PORT: '5432'
   POSTGRES_DB: 'backstage'
@@ -12,59 +12,59 @@ common:
 
   # AWS Environment
   AWS_REGION: 'us-east-1'
-  AWS_ACCOUNT: "123456789123"
+  AWS_ACCOUNT: "404825630592"
   TAG_STACK_NAME: "backstage-infra"
   TAG_STACK_PRODUCT: "platform"
 
-  # Build and Infra Info 
+  # Build and Infra Info
   CONTAINER_PORT: '7000'
   CONTAINER_NAME: 'backstage'
-  DOMAIN_NAME: "backstage.example.com"
-  ACM_ARN: "arn:aws:acm:region:account:certificate/my-certificate-name"
+  DOMAIN_NAME: "laerdal-apps-dev.com"
+  ACM_ARN: "arn:aws:acm:us-east-1:404825630592:certificate/4681aeda-2ab4-4dbd-ad3b-5a6afdb72030"
   ECR_REPO_NAME: "backstage"
   # optional will default to 'dockerfile'
   DOCKERFILE: 'dockerfile.prod'
 
   # CodePipeline repo info
-  GITHUB_APP_REPO: "myapprepo"
-  GITHUB_INFRA_REPO: "myinfrarepo"
-  GITHUB_ORG: 'myorg'
+  GITHUB_APP_REPO: "backstage"
+  GITHUB_INFRA_REPO: "backstage-on-aws"
+  GITHUB_ORG: 'blinemidecal'
   # Github Connection for Code* services
-  CODESTAR_CONN_ARN: "arn:aws:codestar:region:account:project/resource-specifier"
+  CODESTAR_CONN_ARN: "arn:aws:codestar:us-east-1:404825630592:project/backstage"
   # Chatbot Connection for Code* notifications
-  CODESTAR_NOTIFY_ARN: "arn:aws:chatbot:region:account:chat-configuration/slack-channel/myslackchannel"
+  # CODESTAR_NOTIFY_ARN: ""
   # can define the following but defaults to 'main'
-  # GITHUB_INFRA_BRANCH
+  GITHUB_INFRA_BRANCH: "master"
   # GITHUB_APP_BRANCH
 
   # github secret lookup, used by app to configure integration to github
-  GITHUB_APP_ARN: "arn:aws:secretsmanager:region:account:secret:mysecret"
+  GITHUB_APP_ARN: "arn:aws:secretsmanager:us-east-1:404825630592:secret:/dev/backstage/github-app-file-dkp2qe"
 
   # AWS Secret Name use by APP for auth to aws services.
-  AWS_AUTH_SECRET_NAME: "myawsauthsecret"
+  AWS_AUTH_SECRET_NAME: "arn:aws:secretsmanager:us-east-1:404825630592:secret:/dev/backstage/aws-auth-credentials-5T4WmY"
 
 # ENV var overrides per stage
-stages: 
+stages:
   test:
     ### This Config overrides for test stage
     # Routing & Discovery
-    HOST_NAME: 'test-mybackstage'
+    HOST_NAME: 'backstage'
     # Github OAuth Secret Name
-    GITHUB_AUTH_SECRET_NAME: "test-github-auth-secret"
+    GITHUB_AUTH_SECRET_NAME: "arn:aws:secretsmanager:us-east-1:404825630592:secret:/dev/backstage/github-oauth-credentials-06pCAb"
     # Node Env
     NODE_ENV: 'development'
     LOG_LEVEL: 'debug'
     # stage approval will install a manual approval gate in front of a deployment action
     STAGE_APPROVAL: False
 
-  prod:
-    ### This Config overrides for prod stage
-    # Routing & Discovery
-    HOST_NAME: 'mybackstage'
-    # github OAuth secret Name 
-    GITHUB_AUTH_SECRET_NAME: "prod-github-auth-secret"
-    # stage approval will install a manual approval gate in front of a deployment action
-    STAGE_APPROVAL: True
-    # approval emails to be notified by approval action 
-    APPROVAL_EMAILS:
-      - "devops@example.com"
+  # prod:
+  #   ### This Config overrides for prod stage
+  #   # Routing & Discovery
+  #   HOST_NAME: 'mybackstage'
+  #   # github OAuth secret Name
+  #   GITHUB_AUTH_SECRET_NAME: ""
+  #   # stage approval will install a manual approval gate in front of a deployment action
+  #   STAGE_APPROVAL: True
+  #   # approval emails to be notified by approval action
+  #   APPROVAL_EMAILS:
+  #     - ""
