@@ -122,7 +122,7 @@ class StageResourceStack(core.Construct):
             container_name=container_name,
             secrets = self.secret_mapping,
             task_role = crs.task_role,
-            enable_logging=False
+            enable_logging=True
         )
 
         # Easiest way to stand up mult-tier ECS app is with an ecs_pattern,  we are making it HTTPS
