@@ -28,14 +28,14 @@ common:
   # CodePipeline repo info
   GITHUB_APP_REPO: "backstage"
   GITHUB_INFRA_REPO: "backstage-on-aws"
-  GITHUB_ORG: 'blinemidecal'
+  GITHUB_ORG: 'blinemedical'
   # Github Connection for Code* services
-  CODESTAR_CONN_ARN: "arn:aws:codestar:us-east-1:404825630592:project/backstage"
+  CODESTAR_CONN_ARN: "arn:aws:codestar-connections:us-east-1:404825630592:connection/94cf32af-07bb-43f5-9c06-1f4c1c2503c5"
   # Chatbot Connection for Code* notifications
   # CODESTAR_NOTIFY_ARN: ""
   # can define the following but defaults to 'main'
-  GITHUB_INFRA_BRANCH: "master"
-  # GITHUB_APP_BRANCH
+  GITHUB_INFRA_BRANCH: "main"
+  GITHUB_APP_BRANCH: "master"
 
   # github secret lookup, used by app to configure integration to github
   GITHUB_APP_ARN: "arn:aws:secretsmanager:us-east-1:404825630592:secret:/dev/backstage/github-app-file-dkp2qe"
