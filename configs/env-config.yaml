@@ -34,8 +34,8 @@ common:
   # Chatbot Connection for Code* notifications
   # CODESTAR_NOTIFY_ARN: ""
   # can define the following but defaults to 'main'
-  GITHUB_INFRA_BRANCH: "main"
-  GITHUB_APP_BRANCH: "master"
+  #GITHUB_INFRA_BRANCH: "main"
+  #GITHUB_APP_BRANCH: "main"
 
   # github secret lookup, used by app to configure integration to github
   GITHUB_APP_ARN: "arn:aws:secretsmanager:us-east-1:404825630592:secret:/dev/backstage/github-app-file-dkp2qe"
