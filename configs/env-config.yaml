@@ -23,7 +23,7 @@ common:
   ACM_ARN: "arn:aws:acm:us-east-1:404825630592:certificate/4681aeda-2ab4-4dbd-ad3b-5a6afdb72030"
   ECR_REPO_NAME: "laerdallabs/backstage"
   # optional will default to 'dockerfile'
-  DOCKERFILE: 'dockerfile.prod'
+  DOCKERFILE: 'Dockerfile.prod'
 
   # CodePipeline repo info
   GITHUB_APP_REPO: "backstage"
