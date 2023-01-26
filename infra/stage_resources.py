@@ -31,6 +31,8 @@ class StageResourceStack(core.Construct):
         github_auth_secret_name = props.get("GITHUB_AUTH_SECRET_NAME", None)
         # secretmgr info for auth to AWS for plugins
         aws_auth_secret_name = props.get("AWS_AUTH_SECRET_NAME", None)
+        # secretmgr info for auth to Jira plugin
+        jira_token_secret_name = props.get("JIRA_TOKEN_SECRET_NAME", None)
 
         # # There is some weirdness here on synth with jsii when casting happens 
         # # using secret_mapping['VAR']=object assignment throws a casting error on synth
@@ -51,6 +53,9 @@ class StageResourceStack(core.Construct):
             self.secret_mapping.update({"AWS_ACCESS_KEY_SECRET": ecs.Secret.from_secrets_manager(aws_auth_secret, field='secret')})
             # this is a duplicate of above, used by the @roadiehq/aws-credentials-plugin
             self.secret_mapping.update({"AWS_SECRET_ACCESS_KEY": ecs.Secret.from_secrets_manager(aws_auth_secret, field='secret')})
+        if jira_token_secret_name is not None:
+            jira_token_secret = secrets.Secret.from_secret_name_v2(self, "jira-token-secret", jira_token_secret_name)
+            self.secret_mapping.update({'JIRA_TOKEN': ecs.Secret.from_secrets_manager(jira_token_secret, field='secret')})
 
         # hosted zone for ALB and Cert
         # if create_r53:

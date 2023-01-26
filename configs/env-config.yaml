@@ -43,6 +43,9 @@ common:
   # AWS Secret Name use by APP for auth to aws services.
   AWS_AUTH_SECRET_NAME: "/dev/backstage/aws-auth-credentials"
 
+  # Jira Token Secret Name used by Jira plugin
+  JIRA_TOKEN_SECRET_NAME: "/dev/backstage/jira-token"
+
 # ENV var overrides per stage
 stages:
   test:
