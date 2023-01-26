@@ -19,8 +19,8 @@ common:
   # Build and Infra Info
   CONTAINER_PORT: '7000'
   CONTAINER_NAME: 'backstage'
-  DOMAIN_NAME: "laerdal-apps-dev.com"
-  ACM_ARN: "arn:aws:acm:us-east-1:404825630592:certificate/4681aeda-2ab4-4dbd-ad3b-5a6afdb72030"
+  DOMAIN_NAME: "laerdal-apps-dev.io"
+  ACM_ARN: "arn:aws:acm:us-east-1:404825630592:certificate/f71dd382-d222-4e7b-848d-d4d05411df8d"
   ECR_REPO_NAME: "laerdallabs/backstage"
   # optional will default to 'dockerfile'
   DOCKERFILE: 'Dockerfile.prod'
