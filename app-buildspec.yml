@@ -10,9 +10,10 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws --version
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $BASE_REPO_URI
-      - aws secretsmanager get-secret-value --secret-id $GITHUB_APP_ARN --query 'SecretString' --output text > gh-org-app.yaml
-      - aws secretsmanager get-secret-value --secret-id '/dev/backstage/github-blinemedical-app-file' --output text --query SecretString > github-app-backstage-blinemedical-credentials.yaml
-      - aws secretsmanager get-secret-value --secret-id '/dev/backstage/github-laerdallabs-app-file' --output text --query SecretString > github-app-backstage-laerdallabs-credentials.yaml
+      # TODO: remove once https://github.com/blinemedical/backstage/pull/11 is merged
+      - aws secretsmanager get-secret-value --secret-id $GITHUB_BLINE_APP_ARN --query 'SecretString' --output text > gh-org-app.yaml
+      - aws secretsmanager get-secret-value --secret-id $GITHUB_BLINE_APP_ARN --output text --query SecretString > github-app-backstage-blinemedical-credentials.yaml
+      - aws secretsmanager get-secret-value --secret-id $GITHUB_LLDC_APP_ARN --output text --query SecretString > github-app-backstage-laerdallabs-credentials.yaml
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
       - docker pull $REPOSITORY_URI:latest || true
