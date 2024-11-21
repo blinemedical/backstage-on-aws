@@ -37,8 +37,9 @@ common:
   #GITHUB_INFRA_BRANCH: "main"
   #GITHUB_APP_BRANCH: "main"
 
-  # github secret lookup, used by app to configure integration to github
-  GITHUB_APP_ARN: "arn:aws:secretsmanager:us-east-1:404825630592:secret:/dev/backstage/github-app-file-dkp2qe"
+  # github secrets lookup, used by app to configure integration to github
+  GITHUB_BLINE_APP_ARN: "arn:aws:secretsmanager:us-east-1:404825630592:secret:/dev/backstage/github-blinemedical-app-file-PgUA5s"
+  GITHUB_LLDC_APP_ARN: "arn:aws:secretsmanager:us-east-1:404825630592:secret:/dev/backstage/github-laerdallabs-app-file-A6Wd4n"
 
   # AWS Secret Name use by APP for auth to aws services.
   AWS_AUTH_SECRET_NAME: "/dev/backstage/aws-auth-credentials"
